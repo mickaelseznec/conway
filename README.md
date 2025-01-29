@@ -6,12 +6,15 @@ The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a c
 
 The Game of Life is played on a grid of square cells, each of which can be in one of two possible states, alive or dead, represented by a 1 or 0, respectively. The state of each cell evolves in discrete time steps as determined by the following rules:
 
+    We consider that a cell has two states: dead or alive and eight neighbors: top, top-right, right, bottom-right, bottom, bottom-left, left, top-left.
     Any live cell with fewer than two live neighbors dies (underpopulation).
     Any live cell with two or three live neighbors lives on to the next generation.
     Any live cell with more than three live neighbors dies (overpopulation).
     Any dead cell with exactly three live neighbors becomes a live cell (reproduction).
 
 These rules lead to a wide variety of patterns and structures, some of which are stable, others that oscillate, and still others that move across the grid.
+
+In our implementation, we will use a 2D grid of size `NxN` and we will use zero-border conditions: neighbors of cells on the border of the grid are considered dead.
 
 ## Project structure
 
@@ -66,7 +69,7 @@ The project can be tested using the following command:
 
 The end-goal is to get the fastest implementation of the game of life, as judged by the number of FPS reported by `python conway.py profile --grid-size 4000`. You can modify the following files `conway.cu`.
 
-First, complete the initial TODOs in conway.cu and make sure your code matches the reference mplementation. You can use `python conway.py test` to check if your implementation is correct.
+First, complete the initial TODOs in conway.cu and make sure your code matches the reference implementation. You can use `python conway.py test` to check if your implementation is correct.
 
 Then, you have to find ways to make the program faster! Don't hesitate to use the profiling tools:
 - [Nsight Systems](https://docs.nvidia.com/nsight-systems/UserGuide/index.html): `nsys -t cuda -s none python profile --grid-size 4000 --iterations 1` will produce a `.nsys-rep` file that you can open with Nsight Systems.
